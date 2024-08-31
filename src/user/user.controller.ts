@@ -1,22 +1,32 @@
 import { UserService } from './user.service';
 import {
+  Body,
   Controller,
   Get,
   Param,
   ParseIntPipe,
   ParseUUIDPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ValidationLogPipe } from './validations/validationLog.pipe';
+import { CreateUser } from './dto/create-user.dto';
+import { log } from 'console';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
+  // @Get()
+  // getAll() {
+  //   return this.userService.getUsers();
+  // }
+
+  // Useing DTO
   @Get()
-  getAll() {
-    return this.userService.getUsers();
+  getAll(@Body(ValidationPipe) createUser: CreateUser) {
+    console.log(createUser);
   }
 
-  // Return Numpers
+  // Return Numpers ........<<
   @Get(':id')
   getOne(@Param('id', ParseIntPipe) id: number) {
     // return this.userService.getUser();
