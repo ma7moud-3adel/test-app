@@ -16,21 +16,26 @@ export class UserController {
     return this.userService.getUsers();
   }
 
-  // @Get(':id')
-  // getOne(@Param('id', ParseIntPipe) id: number) {
-  //   // return this.userService.getUser();
-  //   console.log(id);
-  // }
+  // Return Numpers
+  @Get(':id')
+  getOne(@Param('id', ParseIntPipe) id: number) {
+    // return this.userService.getUser();
+    console.log(id);
+  }
+
+  // // Checking for the valid ID
   // @Get(':id')
   // getOne(@Param('id', ParseUUIDPipe) id: number) {
   //   // return this.userService.getUser();
   //   console.log(id);
   // }
-  @Get(':id')
-  getOne(@Param('id', ValidationLogPipe) id: number) {
-    // return this.userService.getUser();
-    console.log(id);
-  }
+
+  // // Create Custom pipes
+  // @Get(':id')
+  // getOne(@Param('id', ValidationLogPipe) id: number) {
+  //   // return this.userService.getUser();
+  //   console.log(id);
+  // }
 }
 @Controller('admin')
 export class AdminController {
