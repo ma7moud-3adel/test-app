@@ -1,13 +1,20 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  getUsers() {
-    return 'Ma7moud';
-  }
+  constructor(
+    @InjectRepository(User) private readonly user: Repository<User>,
+  ) {}
 
-  getUser() {
-    throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
-    return 'Ma7moud in DB';
-  }
+  // getUsers() {
+  //   return 'Ma7moud';
+  // }
+
+  // getUser() {
+  //   throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+  //   return 'Ma7moud in DB';
+  // }
 }
