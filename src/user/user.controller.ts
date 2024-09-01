@@ -15,7 +15,8 @@ import { log } from 'console';
 import { RolesGuard } from './guards/roles.guard';
 
 @Controller('user')
-@UseGuards(RolesGuard)
+// // UseGuards
+// @UseGuards(RolesGuard)
 export class UserController {
   constructor(private userService: UserService) {}
   // @Get()
