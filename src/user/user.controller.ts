@@ -2,6 +2,7 @@ import { UserService } from './user.service';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -13,6 +14,7 @@ import { ValidationLogPipe } from './validations/validationLog.pipe';
 import { CreateUser } from './dto/create-user.dto';
 import { log } from 'console';
 import { RolesGuard } from './guards/roles.guard';
+import { Roles } from './guards/roles.decorator';
 
 @Controller('user')
 // // UseGuards
@@ -50,6 +52,13 @@ export class UserController {
   //   // return this.userService.getUser();
   //   console.log(id);
   // }
+
+  @Delete(':id')
+  @Roles(['admin', 'manager'])
+  @UseGuards(RolesGuard)
+  deletUser(@Body(ValidationPipe) createUser: CreateUser) {
+    console.log(createUser);
+  }
 }
 @Controller('admin')
 export class AdminController {
