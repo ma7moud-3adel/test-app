@@ -23,8 +23,8 @@ export class UserService {
   async findAll() {
     const users = await this.user.find();
     return {
-      data: users,
       count: users.length,
+      data: users,
     };
   }
   async findOne(id) {
@@ -41,6 +41,19 @@ export class UserService {
       throw new NotFoundException();
     }
     return this.user.save({ ...user, ...updateUser });
+  }
+
+  async delete(id) {
+    const user = await this.user.findOne({ where: { id: id } });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    console.log(user);
+    const deleted = this.user.delete(id);
+    return {
+      deleted,
+      res: 'user deleted',
+    };
   }
   // getUsers() {
   //   return 'Ma7moud';
