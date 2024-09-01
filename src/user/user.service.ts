@@ -34,6 +34,14 @@ export class UserService {
     }
     return user;
   }
+
+  async update(id, updateUser) {
+    const user = await this.user.findOne({ where: { id: id } });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return this.user.save({ ...user, ...updateUser });
+  }
   // getUsers() {
   //   return 'Ma7moud';
   // }

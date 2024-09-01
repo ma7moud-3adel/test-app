@@ -7,6 +7,7 @@ import {
   Param,
   ParseIntPipe,
   ParseUUIDPipe,
+  Patch,
   Post,
   UseGuards,
   ValidationPipe,
@@ -36,6 +37,10 @@ export class UserController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
+  }
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUser: CreateUser) {
+    return this.userService.update(id, updateUser);
   }
   // // @Get()
   // // getAll() {
