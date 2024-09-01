@@ -7,6 +7,7 @@ import {
   Param,
   ParseIntPipe,
   ParseUUIDPipe,
+  Post,
   UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
@@ -15,12 +16,18 @@ import { CreateUser } from './dto/create-user.dto';
 import { log } from 'console';
 import { RolesGuard } from './guards/roles.guard';
 import { Roles } from './guards/roles.decorator';
+import { create } from 'domain';
 
 @Controller('user')
 // // UseGuards
 // @UseGuards(RolesGuard)
 export class UserController {
   constructor(private userService: UserService) {}
+
+  @Post()
+  create(@Body() createUser: CreateUser) {
+    return this.userService.create(createUser);
+  }
 
   @Get()
   findAll() {
