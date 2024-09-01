@@ -1,5 +1,10 @@
 import { CreateUser } from './dto/create-user.dto';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -17,7 +22,17 @@ export class UserService {
 
   async findAll() {
     const users = await this.user.find();
-    return users;
+    return {
+      data: users,
+      count: users.length,
+    };
+  }
+  async findOne(id) {
+    const user = await this.user.findOne({ where: { id: id } });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return user;
   }
   // getUsers() {
   //   return 'Ma7moud';
