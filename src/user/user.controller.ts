@@ -55,6 +55,7 @@ export class UserController {
 
   @Delete(':id')
   @Roles(['admin', 'manager'])
+  // @Roles(['user'])
   @UseGuards(RolesGuard)
   deletUser(@Body(ValidationPipe) createUser: CreateUser) {
     console.log(createUser);
