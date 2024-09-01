@@ -21,45 +21,50 @@ import { Roles } from './guards/roles.decorator';
 // @UseGuards(RolesGuard)
 export class UserController {
   constructor(private userService: UserService) {}
-  // @Get()
-  // getAll() {
-  //   return this.userService.getUsers();
-  // }
 
-  // Useing DTO
   @Get()
-  getAll(@Body(ValidationPipe) createUser: CreateUser) {
-    console.log(createUser);
+  findAll() {
+    return this.userService.findAll();
   }
+  // // @Get()
+  // // getAll() {
+  // //   return this.userService.getUsers();
+  // // }
 
-  // Return Numpers ........<<
-  @Get(':id')
-  getOne(@Param('id', ParseIntPipe) id: number) {
-    // return this.userService.getUser();
-    console.log(id);
-  }
+  // // Useing DTO
+  // @Get()
+  // getAll(@Body(ValidationPipe) createUser: CreateUser) {
+  //   console.log(createUser);
+  // }
 
-  // // Checking for the valid ID
+  // // Return Numpers ........<<
   // @Get(':id')
-  // getOne(@Param('id', ParseUUIDPipe) id: number) {
+  // getOne(@Param('id', ParseIntPipe) id: number) {
   //   // return this.userService.getUser();
   //   console.log(id);
   // }
 
-  // // Create Custom pipes
-  // @Get(':id')
-  // getOne(@Param('id', ValidationLogPipe) id: number) {
-  //   // return this.userService.getUser();
-  //   console.log(id);
-  // }
+  // // // Checking for the valid ID
+  // // @Get(':id')
+  // // getOne(@Param('id', ParseUUIDPipe) id: number) {
+  // //   // return this.userService.getUser();
+  // //   console.log(id);
+  // // }
 
-  @Delete(':id')
-  @Roles(['admin', 'manager'])
-  // @Roles(['user'])
-  @UseGuards(RolesGuard)
-  deletUser(@Body(ValidationPipe) createUser: CreateUser) {
-    console.log(createUser);
-  }
+  // // // Create Custom pipes
+  // // @Get(':id')
+  // // getOne(@Param('id', ValidationLogPipe) id: number) {
+  // //   // return this.userService.getUser();
+  // //   console.log(id);
+  // // }
+
+  // @Delete(':id')
+  // @Roles(['admin', 'manager'])
+  // // @Roles(['user'])
+  // @UseGuards(RolesGuard)
+  // deletUser(@Body(ValidationPipe) createUser: CreateUser) {
+  //   console.log(createUser);
+  // }
 }
 @Controller('admin')
 export class AdminController {

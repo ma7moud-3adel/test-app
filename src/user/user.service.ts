@@ -9,6 +9,10 @@ export class UserService {
     @InjectRepository(User) private readonly user: Repository<User>,
   ) {}
 
+  async findAll() {
+    const users = await this.user.find();
+    return users;
+  }
   // getUsers() {
   //   return 'Ma7moud';
   // }
